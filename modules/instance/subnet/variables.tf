@@ -8,10 +8,9 @@ variable "subnet_cidr" {
   description = "subnet_cidr"
 }
 
-variable "subnet_ipv6_cidr_block" {
-  type        = string
-  description = "subnet_ipv6_cidr_block"
-
+variable "subnet_ipv6_cidr_blocks" {
+  type        = list(string)
+  description = "subnet_ipv6_cidr_blocks"
 }
 
 variable "subnet_name" {
