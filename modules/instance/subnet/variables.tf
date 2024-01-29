@@ -22,3 +22,8 @@ variable "vcn_id" {
   type        = string
   description = "vcn_id"
 }
+
+variable "route_table_id" {
+  type        = string
+  description = "route_table_id"
+}

@@ -55,3 +55,15 @@ variable "subnet_name" {
   description = "subnet_name"
   default     = "infrastructure_subnet"
 }
+
+variable "igw_name" {
+  type        = string
+  description = "igw_name"
+  default     = "infrastructure_igw"
+}
+
+variable "rt_name" {
+  type        = string
+  description = "rt_name"
+  default     = "infrastructure_rt"
+}
