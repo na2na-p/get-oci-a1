@@ -1,13 +1,13 @@
 variable "memory_in_gbs" {
   type        = string
   description = "memory_in_gbs"
-  default     = "6"
+  default     = "24"
 }
 
 variable "ocpus" {
   type        = string
   description = "ocpus"
-  default     = "1"
+  default     = "6"
 }
 
 variable "compartment_id" {
