@@ -1,4 +1,7 @@
 resource "oci_core_vcn" "infrastructure_vcn" {
+	freeform_tags = {
+		"ManagedBy" = "Terraform"
+	}
   compartment_id                   = var.compartment_id
   cidr_blocks                      = var.vcn_cidr_blocks
   display_name                     = var.vcn_name

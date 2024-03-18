@@ -1,4 +1,7 @@
 resource "oci_core_subnet" "infrastructure_subnet" {
+	freeform_tags = {
+		"ManagedBy" = "Terraform"
+	}
   compartment_id             = var.compartment_id
   vcn_id                     = var.vcn_id
   cidr_block                 = var.subnet_cidr

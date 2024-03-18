@@ -1,4 +1,7 @@
 resource "oci_core_instance" "generated_oci_core_instance" {
+	freeform_tags = {
+		"ManagedBy" = "Terraform"
+	}
   agent_config {
     is_management_disabled = "false"
     is_monitoring_disabled = "false"
