@@ -48,12 +48,23 @@ module "service_lb_subnet" {
 }
 
 module "node_subnet" {
-	source                      = "./node_subnet"
-	node_subnet_name            = var.node_subnet_name
-	compartment_id              = var.compartment_id
-	vcn_id                      = module.core_vcn.id
-	route_table_id              = module.core_route_table.id
-	security_list_id            = module.core_vcn.security_list_id
-	cidr_block                  = var.node_subnet_cidr_block
-	node_subnet_dns_label       = var.node_subnet_dns_label
+  source                = "./node_subnet"
+  node_subnet_name      = var.node_subnet_name
+  compartment_id        = var.compartment_id
+  vcn_id                = module.core_vcn.id
+  route_table_id        = module.core_route_table.id
+  security_list_id      = module.core_vcn.security_list_id
+  cidr_block            = var.node_subnet_cidr_block
+  node_subnet_dns_label = var.node_subnet_dns_label
+}
+
+module "kubernetes_api_endpoint_subnet" {
+  source                                   = "./kubernetes_api_endpoint_subnet"
+  kubernetes_api_endpoint_subnet_name      = var.kubernetes_api_endpoint_subnet_name
+  compartment_id                           = var.compartment_id
+  vcn_id                                   = module.core_vcn.id
+  route_table_id                           = module.core_route_table.id
+  security_list_id                         = module.core_vcn.security_list_id
+  cidr_block                               = var.kubernetes_api_endpoint_subnet_cidr_block
+  kubernetes_api_endpoint_subnet_dns_label = var.kubernetes_api_endpoint_subnet_dns_label
 }

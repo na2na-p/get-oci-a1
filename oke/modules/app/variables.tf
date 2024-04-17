@@ -43,6 +43,12 @@ variable "core_vcn_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
+variable "kubernetes_api_endpoint_subnet_cidr_block" {
+	type        = string
+	description = "kubernetes_api_endpoint_subnet_cidr_block"
+	default     = "10.0.0.0/28"
+}
+
 variable "node_subnet_cidr_block" {
   type        = string
   description = "node_subnet_cidr_block"
@@ -73,6 +79,12 @@ variable "service_lb_subnet_name" {
   default     = "service_lb_subnet"
 }
 
+variable "kubernetes_api_endpoint_subnet_name" {
+	type        = string
+	description = "kubernetes_api_endpoint_subnet_name"
+	default     = "kubernetes_api_endpoint_subnet"
+}
+
 variable "service_lb_subnet_dns_label" {
   type        = string
   description = "service_lb_dns_label"
@@ -83,4 +95,10 @@ variable "node_subnet_dns_label" {
 	type        = string
 	description = "node_subnet_dns_label"
 	default     = "nodesubnet"
+}
+
+variable "kubernetes_api_endpoint_subnet_dns_label" {
+	type        = string
+	description = "kubernetes_api_endpoint_subnet_dns_label"
+	default     = "k8sapi"
 }
