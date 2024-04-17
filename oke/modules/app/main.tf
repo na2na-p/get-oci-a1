@@ -46,3 +46,14 @@ module "service_lb_subnet" {
   cidr_block                  = var.service_lb_subnet_cidr_block
   service_lb_subnet_dns_label = var.service_lb_subnet_dns_label
 }
+
+module "node_subnet" {
+	source                      = "./node_subnet"
+	node_subnet_name            = var.node_subnet_name
+	compartment_id              = var.compartment_id
+	vcn_id                      = module.core_vcn.id
+	route_table_id              = module.core_route_table.id
+	security_list_id            = module.core_vcn.security_list_id
+	cidr_block                  = var.node_subnet_cidr_block
+	node_subnet_dns_label       = var.node_subnet_dns_label
+}

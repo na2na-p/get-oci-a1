@@ -25,6 +25,12 @@ variable "nat_gateway_name" {
   default     = "oke_nat_gateway"
 }
 
+variable "node_subnet_name" {
+  type        = string
+  description = "node_subnet_name"
+  default     = "oke_node_subnet"
+}
+
 variable "core_service_gateway" {
   type        = string
   description = "core_service_gateway"
@@ -35,6 +41,12 @@ variable "core_vcn_cidr_block" {
   type        = string
   description = "core_vcn_cidr_block"
   default     = "10.0.0.0/16"
+}
+
+variable "node_subnet_cidr_block" {
+  type        = string
+  description = "node_subnet_cidr_block"
+  default     = "10.0.10.0/24"
 }
 
 variable "service_lb_subnet_cidr_block" {
@@ -65,4 +77,10 @@ variable "service_lb_subnet_dns_label" {
   type        = string
   description = "service_lb_dns_label"
   default     = "servicelb"
+}
+
+variable "node_subnet_dns_label" {
+	type        = string
+	description = "node_subnet_dns_label"
+	default     = "nodesubnet"
 }
