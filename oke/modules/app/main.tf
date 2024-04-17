@@ -27,6 +27,13 @@ module "core_service_gateway" {
   vcn_id               = module.core_vcn.id
 }
 
+module "core_default_route_table" {
+  source                   = "./core_default_route_table"
+  default_route_table_name = var.core_default_route_table_name
+  default_route_table_id   = module.core_vcn.default_route_table_id
+  internet_gateway_id      = module.core_internet_gateway.id
+}
+
 module "core_route_table" {
   source             = "./core_route_table"
   compartment_id     = var.compartment_id
@@ -41,7 +48,7 @@ module "service_lb_subnet" {
   service_lb_subnet_name      = var.service_lb_subnet_name
   compartment_id              = var.compartment_id
   vcn_id                      = module.core_vcn.id
-  route_table_id              = module.core_route_table.id
+  route_table_id              = module.core_default_route_table.id
   security_list_id            = module.core_vcn.security_list_id
   cidr_block                  = var.service_lb_subnet_cidr_block
   service_lb_subnet_dns_label = var.service_lb_subnet_dns_label
@@ -63,7 +70,7 @@ module "kubernetes_api_endpoint_subnet" {
   kubernetes_api_endpoint_subnet_name      = var.kubernetes_api_endpoint_subnet_name
   compartment_id                           = var.compartment_id
   vcn_id                                   = module.core_vcn.id
-  route_table_id                           = module.core_route_table.id
+  route_table_id                           = module.core_default_route_table.id
   security_list_id                         = module.core_vcn.security_list_id
   cidr_block                               = var.kubernetes_api_endpoint_subnet_cidr_block
   kubernetes_api_endpoint_subnet_dns_label = var.kubernetes_api_endpoint_subnet_dns_label
