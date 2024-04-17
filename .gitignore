@@ -43,3 +43,4 @@ docker.env
 *.key
 result.txt
 id_ed25519*
+.idea
