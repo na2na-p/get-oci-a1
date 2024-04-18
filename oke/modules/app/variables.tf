@@ -103,6 +103,12 @@ variable "node_sec_list_name" {
 	default     = "node_sec_list"
 }
 
+variable "kubernetes_api_endpoint_sec_list_name" {
+	type        = string
+	description = "kubernetes_api_endpoint_sec_list_name"
+	default     = "kubernetes_api_endpoint_sec_list"
+}
+
 variable "service_lb_subnet_dns_label" {
   type        = string
   description = "service_lb_dns_label"

@@ -71,7 +71,7 @@ module "kubernetes_api_endpoint_subnet" {
   compartment_id                           = var.compartment_id
   vcn_id                                   = module.core_vcn.id
   route_table_id                           = module.core_default_route_table.id
-  security_list_id                         = module.core_vcn.security_list_id
+  security_list_id                         = module.kubernetes_api_endpoint_sec_list.id
   cidr_block                               = var.kubernetes_api_endpoint_subnet_cidr_block
   kubernetes_api_endpoint_subnet_dns_label = var.kubernetes_api_endpoint_subnet_dns_label
 }
@@ -88,4 +88,11 @@ module "node_sec_list" {
 	compartment_id = var.compartment_id
 	vcn_id = module.core_vcn.id
 	node_sec_list_name = var.node_sec_list_name
+}
+
+module "kubernetes_api_endpoint_sec_list" {
+	source = "./kubernetes_api_endpoint_sec_list"
+	compartment_id = var.compartment_id
+	vcn_id = module.core_vcn.id
+	kubernetes_api_endpoint_sec_list_name = var.kubernetes_api_endpoint_sec_list_name
 }
