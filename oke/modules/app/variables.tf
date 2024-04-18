@@ -91,6 +91,12 @@ variable "kubernetes_api_endpoint_subnet_name" {
   default     = "kubernetes_api_endpoint_subnet"
 }
 
+variable "service_lb_sec_list_name" {
+	type        = string
+	description = "service_lb_sec_list_name"
+	default     = "service_lb_sec_list"
+}
+
 variable "service_lb_subnet_dns_label" {
   type        = string
   description = "service_lb_dns_label"

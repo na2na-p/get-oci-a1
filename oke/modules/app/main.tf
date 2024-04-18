@@ -75,3 +75,10 @@ module "kubernetes_api_endpoint_subnet" {
   cidr_block                               = var.kubernetes_api_endpoint_subnet_cidr_block
   kubernetes_api_endpoint_subnet_dns_label = var.kubernetes_api_endpoint_subnet_dns_label
 }
+
+module "service_lb_sec_list" {
+	source = "./service_lb_sec_list"
+	compartment_id = var.compartment_id
+	vcn_id = module.core_vcn.id
+	service_lb_sec_list_name = var.service_lb_sec_list_name
+}
