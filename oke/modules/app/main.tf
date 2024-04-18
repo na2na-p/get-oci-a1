@@ -60,7 +60,7 @@ module "node_subnet" {
   compartment_id        = var.compartment_id
   vcn_id                = module.core_vcn.id
   route_table_id        = module.core_route_table.id
-  security_list_id      = module.core_vcn.security_list_id
+  security_list_id      = module.node_sec_list.id
   cidr_block            = var.node_subnet_cidr_block
   node_subnet_dns_label = var.node_subnet_dns_label
 }
@@ -81,4 +81,11 @@ module "service_lb_sec_list" {
 	compartment_id = var.compartment_id
 	vcn_id = module.core_vcn.id
 	service_lb_sec_list_name = var.service_lb_sec_list_name
+}
+
+module "node_sec_list" {
+	source = "./node_sec_list"
+	compartment_id = var.compartment_id
+	vcn_id = module.core_vcn.id
+	node_sec_list_name = var.node_sec_list_name
 }
