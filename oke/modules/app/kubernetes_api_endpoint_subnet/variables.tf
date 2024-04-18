@@ -25,16 +25,16 @@ variable "prohibit_public_ip_on_vnic" {
 }
 
 variable "route_table_id" {
-	type        = string
-	description = "route_table_id"
+  type        = string
+  description = "route_table_id"
 }
 
 variable "security_list_id" {
-	type        = string
-	description = "security_list_id"
+  type        = string
+  description = "security_list_id"
 }
 
 variable "kubernetes_api_endpoint_subnet_dns_label" {
-	type        = string
-	description = "kubernetes_api_endpoint_subnet_dns_label"
+  type        = string
+  description = "kubernetes_api_endpoint_subnet_dns_label"
 }
