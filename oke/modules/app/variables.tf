@@ -61,6 +61,12 @@ variable "service_lb_subnet_cidr_block" {
   default     = "10.0.20.0/24"
 }
 
+variable "pod_subnet_cidr_block" {
+	type        = string
+	description = "pod_subnet_cidr_block"
+	default     = "10.0.64.0/18"
+}
+
 variable "core_vcn_name" {
   type        = string
   description = "core_vcn_name"
@@ -103,10 +109,22 @@ variable "node_sec_list_name" {
 	default     = "node_sec_list"
 }
 
+variable "pod_subnet_name" {
+	type        = string
+	description = "pod_subnet_name"
+	default     = "pod_subnet"
+}
+
 variable "kubernetes_api_endpoint_sec_list_name" {
 	type        = string
 	description = "kubernetes_api_endpoint_sec_list_name"
 	default     = "kubernetes_api_endpoint_sec_list"
+}
+
+variable "pod_subnet_sec_list_name" {
+	type        = string
+	description = "pod_subnet_sec_list_name"
+	default     = "pod_subnet_sec_list"
 }
 
 variable "service_lb_subnet_dns_label" {
@@ -125,4 +143,36 @@ variable "kubernetes_api_endpoint_subnet_dns_label" {
   type        = string
   description = "kubernetes_api_endpoint_subnet_dns_label"
   default     = "k8sapi"
+}
+
+variable "pod_subnet_dns_label" {
+	type        = string
+	description = "pod_subnet_dns_label"
+	default     = "podsubnet"
+}
+
+variable "kubernetes_version" {
+	type        = string
+	description = "kubernetes_version"
+}
+
+variable "node_pool_name" {
+	type        = string
+	description = "node_pool_name"
+	default     = "node_pool"
+}
+
+variable "node_pool_size" {
+	type        = number
+	description = "node_pool_size"
+}
+
+variable "memory_in_gbs" {
+	type        = string
+	description = "memory_in_gbs"
+}
+
+variable "ocpus" {
+	type        = string
+	description = "ocpus"
 }

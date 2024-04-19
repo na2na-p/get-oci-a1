@@ -76,23 +76,65 @@ module "kubernetes_api_endpoint_subnet" {
   kubernetes_api_endpoint_subnet_dns_label = var.kubernetes_api_endpoint_subnet_dns_label
 }
 
+module "pod_subnet_sec_list" {
+  source                   = "./pod_subnet_sec_list"
+  compartment_id           = var.compartment_id
+  vcn_id                   = module.core_vcn.id
+  pod_subnet_sec_list_name = var.pod_subnet_sec_list_name
+  pod_subnet_cidr_block    = var.pod_subnet_cidr_block
+}
+
+module "pod_subnet" {
+  source               = "./pod_subnet"
+  pod_subnet_name      = var.pod_subnet_name
+  compartment_id       = var.compartment_id
+  vcn_id               = module.core_vcn.id
+  route_table_id       = module.core_route_table.id
+  security_list_id     = module.pod_subnet_sec_list.id
+  cidr_block           = var.pod_subnet_cidr_block
+  pod_subnet_dns_label = var.pod_subnet_dns_label
+}
+
 module "service_lb_sec_list" {
-	source = "./service_lb_sec_list"
-	compartment_id = var.compartment_id
-	vcn_id = module.core_vcn.id
-	service_lb_sec_list_name = var.service_lb_sec_list_name
+  source                   = "./service_lb_sec_list"
+  compartment_id           = var.compartment_id
+  vcn_id                   = module.core_vcn.id
+  service_lb_sec_list_name = var.service_lb_sec_list_name
 }
 
 module "node_sec_list" {
-	source = "./node_sec_list"
-	compartment_id = var.compartment_id
-	vcn_id = module.core_vcn.id
-	node_sec_list_name = var.node_sec_list_name
+  source             = "./node_sec_list"
+  compartment_id     = var.compartment_id
+  vcn_id             = module.core_vcn.id
+  node_sec_list_name = var.node_sec_list_name
 }
 
 module "kubernetes_api_endpoint_sec_list" {
-	source = "./kubernetes_api_endpoint_sec_list"
-	compartment_id = var.compartment_id
-	vcn_id = module.core_vcn.id
-	kubernetes_api_endpoint_sec_list_name = var.kubernetes_api_endpoint_sec_list_name
+  source                                = "./kubernetes_api_endpoint_sec_list"
+  compartment_id                        = var.compartment_id
+  vcn_id                                = module.core_vcn.id
+  kubernetes_api_endpoint_sec_list_name = var.kubernetes_api_endpoint_sec_list_name
+}
+
+module "oke_containerengine_cluster" {
+  source                            = "./containerengine_cluster"
+  compartment_id                    = var.compartment_id
+  vcn_id                            = module.core_vcn.id
+  service_lb_subnet_id              = module.service_lb_subnet.id
+  kubernetes_api_endpoint_subnet_id = module.kubernetes_api_endpoint_subnet.id
+  cluster_name                      = var.cluster_name
+  kubernetes_version                = var.kubernetes_version
+}
+
+module "node_pool" {
+  source             = "./node_pool"
+  compartment_id     = var.compartment_id
+  node_subnet_id     = module.node_subnet.id
+  cluster_id         = module.oke_containerengine_cluster.id
+  node_pool_name     = var.node_pool_name
+  node_pool_size     = var.node_pool_size
+  ocpus              = var.ocpus
+  memory_in_gbs      = var.memory_in_gbs
+  kubernetes_version = var.kubernetes_version
+  pod_subnet_id      = module.pod_subnet.id
 }
