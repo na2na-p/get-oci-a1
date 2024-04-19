@@ -1,1 +1,3 @@
 terraform 1.7.1
+oci 3.39.1
+nodejs 20.10.0

@@ -41,5 +41,7 @@ docker.env
 
 *.pem
 *.key
+*.crt
 result.txt
 id_ed25519*
+.idea
