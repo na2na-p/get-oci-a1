@@ -42,7 +42,7 @@ variable "kubernetes_version" {
 
 variable "node_pool_size" {
   type        = number
-  description = "node_pool_size"
+  description = "ノードプールに配置するVMの数。Allways Freeの枠超えないように調整してください。"
   default     = 1
 }
 
